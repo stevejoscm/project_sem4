@@ -2,7 +2,6 @@ import streamlit as st
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 import chromadb
 import PyPDF2
@@ -31,21 +30,7 @@ def get_pdf_text(uploaded_files):
 
 
 
-def create_pdf_readers(uploaded_files):
-    pdf_readers = []
-    
-    for uploaded_file in uploaded_files:
-        # Save each uploaded PDF file to a temporary location
-        temp_filename = f"temp_pdf_{uploaded_file.name}"
-        print("uploaded files    ",uploaded_files)
-        with open(temp_filename, "wb") as f:
-            f.write(uploaded_file.getbuffer())
-        
-        # Create PdfReader object for each uploaded file
-        pdf_reader = PyPDF2.PdfReader(temp_filename)
-        pdf_readers.append(pdf_reader)
-    
-        return pdf_readers
+
     
 def retrieve_vector_db(collection,query, n_results=3):
         start = time.time()
@@ -86,7 +71,7 @@ def get_llama2_chat_response(question, context, max_new_tokens=500,end_token ="<
 
         #Extract only the response
     
-    # Find the index of the answer part within the response
+        # Find the index of the answer part within the response
         start_idx = response.find("Question:") + len(f"Question: {question}")
         end_idx = response.find(end_token, start_idx)
     
@@ -157,7 +142,6 @@ def initialized2():
 
     # Further processing of all_text can be done here
     document = '\n'.join(all_text)
-    print(document)
    
     def get_overlapped_chunks(textin, chunksize, overlapsize):
         return [textin[a:a+chunksize] for a in range(0,len(textin), chunksize-overlapsize)]
