@@ -1,10 +1,6 @@
-streamlit as st
-torch
-transformers import AutoModelForCausalLM, AutoTokenizer
-sklearn.feature_extraction.text import TfidfVectorizer
-sentence_transformers import SentenceTransformer
-chromadb
-PyPDF2
-os
-time
+Streamlit
+Transformers
+Scikit-learn
+Sentence Transformers
+Chromadb
 PyPDF2
