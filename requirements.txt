@@ -1,0 +1,8 @@
+pandas
+sklearn
+scikit-learn
+tqdm
+imageio
+seaborn
+opencv-python
+-e .
