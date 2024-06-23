@@ -1,8 +1,10 @@
-pandas
-sklearn
-scikit-learn
-tqdm
-imageio
-seaborn
-opencv-python
--e .
+streamlit as st
+torch
+transformers import AutoModelForCausalLM, AutoTokenizer
+sklearn.feature_extraction.text import TfidfVectorizer
+sentence_transformers import SentenceTransformer
+chromadb
+PyPDF2
+os
+time
+PyPDF2
