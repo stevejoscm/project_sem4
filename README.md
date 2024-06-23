@@ -17,7 +17,7 @@ To set up the project, follow these steps:
 1. Clone the repository:
     ```sh
     git clone https://github.com/stevejoscm/project_sem4.git
-    cd your-repository-name
+    cd project_sem4
     ```
 
 2. Create and activate a virtual environment:
