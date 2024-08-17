@@ -26,9 +26,6 @@ def get_pdf_text(uploaded_files):
         
     return all_text
 
-
-
-
     
 def retrieve_vector_db(collection,query, n_results=3):
         start = time.time()
@@ -94,7 +91,6 @@ def get_llama2_chat_response(question, context, max_new_tokens=500,end_token ="<
         return extracted_response, elapsed_gen
 
 
-
 def get_or_create_collection(chroma_client,collection_name):
     try:
         return chroma_client.create_collection(name=collection_name)
@@ -131,11 +127,6 @@ def initialized2():
     # Initialize SentenceTransformer model for encoding queries with specified cache folder
     st.embedding_model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2', cache_folder=cache_folder)
     
-
-    
-    
-
-    # Print the number of pages in the PDF file
     all_text =get_pdf_text(uploaded_files)
 
     # Further processing of all_text can be done here
