@@ -117,7 +117,6 @@ if 'initialized' not in st.session_state:
 
 def initialized2():
     st.session_state.pdf = True
-    print("hi")
     # Create PdfReader object using the uploaded file
     cache_folder = "sentence_transformers_cache"
 
