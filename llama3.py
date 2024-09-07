@@ -64,7 +64,6 @@ def get_llama2_chat_response(question, context, max_new_tokens=500,end_token ="<
         end = time.time()
         response = st.tokenizer.decode(outputs[0])
 
-        #Extract only the response
     
         # Find the index of the answer part within the response
         start_idx = response.find("Question:") + len(f"Question: {question}")
@@ -169,6 +168,5 @@ if st.button("Ask"):
     retrieved_results,retrieve_time = retrieve_vector_db(st.collection,query, n_results=5)
     context = '\n\n'.join(retrieved_results[0])
     response,generation_time = get_llama2_chat_response(query, context, max_new_tokens=500)
-    print("generation time",generation_time)
     st.write("Response:", response)
    
