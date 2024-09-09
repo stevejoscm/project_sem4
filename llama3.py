@@ -7,13 +7,8 @@ import os
 import time
 from PyPDF2 import PdfReader
 
-
-
 st.title("RAG Chatbot for documnet querying")
-
-
 uploaded_files = st.file_uploader("Upload PDF", type="pdf", accept_multiple_files=True)
-
 
 def get_pdf_text(uploaded_files):
     text = ""
