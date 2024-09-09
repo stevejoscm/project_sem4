@@ -9,7 +9,7 @@ from PyPDF2 import PdfReader
 
 
 
-st.title("RAG Chatbot")
+st.title("RAG Chatbot for documnet querying")
 
 
 uploaded_files = st.file_uploader("Upload PDF", type="pdf", accept_multiple_files=True)
@@ -50,26 +50,17 @@ def get_llama2_chat_response(question, context, max_new_tokens=500,end_token ="<
            "content": f"Context: {context}\nQuestion: {question}"
         }
     ]   
-
-        
-        
               
-        tokenized_chat = st.tokenizer.apply_chat_template(prompt, tokenize=True, add_generation_prompt=True, return_tensors="pt")
-
-        
-        
-              
+        tokenized_chat = st.tokenizer.apply_chat_template(prompt, tokenize=True, add_generation_prompt=True, return_tensors="pt")     
         start = time.time()
         outputs =st.model.generate(tokenized_chat, max_new_tokens=max_new_tokens, temperature=0.00001)
         end = time.time()
         response = st.tokenizer.decode(outputs[0])
-
-    
         # Find the index of the answer part within the response
         start_idx = response.find("Question:") + len(f"Question: {question}")
         end_idx = response.find(end_token, start_idx)
     
-    # Extract the actual response from the generated text
+        # Extract the actual response from the generated text
         if end_idx != -1:
             extracted_response = response[start_idx:end_idx].strip()
         else:
@@ -101,8 +92,6 @@ def get_or_create_collection(chroma_client,collection_name):
 def initialize():
     st.session_state.initialized = True
     st.write("Initialization complete.")
-
-
     # Load the pre-trained model and tokenizer
     model_name = "NousResearch/Meta-Llama-3-8B-Instruct"
     st.model = AutoModelForCausalLM.from_pretrained(model_name)
@@ -111,8 +100,6 @@ def initialize():
    
 if 'initialized' not in st.session_state:
     initialize()
-
-
 
 def initialized2():
     st.session_state.pdf = True
@@ -145,7 +132,6 @@ def initialized2():
 
     # Call the function to create or recreate collection
     collection = get_or_create_collection(chroma_client, collection_name)
-
 
     collection.add(
     embeddings = chunk_embeddings,
