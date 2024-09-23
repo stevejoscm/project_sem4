@@ -134,7 +134,7 @@ def initialized2():
     ids= [str(i) for i in range(len(chunks))]
     )
     st.collection =collection
-    print("collection saved   ", collection)
+    print("collection saved :", collection)
     print(collection)
 
 if 'pdf' not in st.session_state and st.button("Process"):
